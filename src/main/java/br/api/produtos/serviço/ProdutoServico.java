@@ -2,6 +2,7 @@ package br.api.produtos.serviço;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -36,4 +37,10 @@ public class ProdutoServico {
             }
         }
     }
+    //Método para remover produtos
+            public ResponseEntity<RespostaModelo>remover(Long codigo){
+                pr.deleteById(codigo);
+                rm.setMensagem("Produto removido com sucesso");
+                return new ResponseEntity<RespostaModelo>(rm, HttpStatus.OK);
+            }
 }
