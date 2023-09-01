@@ -2,7 +2,6 @@ package br.api.produtos.serviço;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -22,13 +21,28 @@ public class ProdutoServico {
     private RespostaModelo rm;
     //método para cadastrar ou alterar produtos
     public ResponseEntity<?>cadastrarAlterar(ProdutoModelo pm, String acao){
+        //Tratamento de exceção caso o nome do produto seja vazio
         if(pm.getNome().equals("")){
             rm.setMensagem("O nome do produto é obrigatório");
             return new ResponseEntity<RespostaModelo>(rm,HttpStatus.BAD_REQUEST);
-        }else if(pm.getMarca().equals("")){
+        }
+        //Tratamento de exceção caso a marca do produto seja vazio
+        else if(pm.getMarca().equals("")){
             rm.setMensagem( " O nome da marca é obrigatório");
             return new ResponseEntity<RespostaModelo>(rm,HttpStatus.BAD_REQUEST);
-        }else{
+        }
+        //Tratamento de exceção caso o preço do produto seja vazio
+        else if(pm.getPreco().equals("")){
+            rm.setMensagem( " A quantia de preço é obrigatório");
+            return new ResponseEntity<RespostaModelo>(rm,HttpStatus.BAD_REQUEST);
+        }
+        //Tratamento de exceção casoa garantia do produto seja vazio
+        else if(pm.getGarantia().equals("")){
+            rm.setMensagem( " O valor da garantia é obrigatório");
+            return new ResponseEntity<RespostaModelo>(rm,HttpStatus.BAD_REQUEST);
+        }
+        
+        else{
             if(acao.equals("cadastrar")){
                 return new ResponseEntity<ProdutoModelo>(pr.save(pm),HttpStatus.CREATED);
             }

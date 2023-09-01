@@ -10,5 +10,5 @@ import lombok.Setter;
 @Setter
 public class RespostaModelo {
     
-    private String mensagem=("Deu errado");
+    private String mensagem=("");
 }

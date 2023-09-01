@@ -19,5 +19,8 @@ public class ProdutoModelo {
     Long codigo ;
     String nome;
     String marca;
+    String data;
+    String preco;
+    String garantia;
    
 }
